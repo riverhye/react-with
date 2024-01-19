@@ -5,6 +5,8 @@ interface Cat {
   _id: string;
   size: number;
   tags: string[];
+  title?: string;
+  content?: string;
 }
 
 const CatCard = () => {
@@ -22,20 +24,24 @@ const CatCard = () => {
     };
 
     fetchData();
-
-    // const imgPath = infos.map((info: Cat) => `${CAT_API_DOMAIN}cat/${info._id}`);
   }, []);
 
   return (
     <>
-      <div className="bg-yellow-300 p-10 font-bold">고앵이</div>
+      <div className="bg-yellow-300 p-10 font-bold">
+        <div className="flex justify-end">
+          <a href="#" className="text-2xl mx-3">
+            🏠
+          </a>
+          <a href="#" className="text-2xl ">
+            👋
+          </a>
+        </div>
+      </div>
 
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap m-5 justify-center items-start">
         {catList.map((cat: Cat) => (
-          <div
-            key={cat._id}
-            className="bg-yellow-100 size-60 md:size-56 hover:backdrop-blur-lg m-5"
-          >
+          <div key={cat._id} className="bg-yellow-100 size-60 md:size-56 m-5">
             <img
               src={`${process.env.REACT_APP_CAT_API_DOMAIN}cat/${cat._id}`}
               className="object-cover object-center w-96 h-32"
@@ -43,7 +49,7 @@ const CatCard = () => {
             <div className="p-3 font-bold">No. {cat.size}</div>
             <ul className="flex flex-wrap">
               {cat.tags.map((tag) => (
-                <li className="mr-1 p-1px">{tag}</li>
+                <li className="mx-1">{tag}</li>
               ))}
             </ul>
           </div>
