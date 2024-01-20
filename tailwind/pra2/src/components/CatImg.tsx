@@ -4,10 +4,7 @@ const getCatInfos = async () => {
     method: 'get',
   });
   const infos = await response.json();
-  // const imgPath = infos.map((info: Cat) => `${CAT_API_DOMAIN}cat/${info._id}`);
   return infos;
 };
-
-// https://cataas.com/cat/TDDEkaYczgTR9L2C
 
 export default getCatInfos;
