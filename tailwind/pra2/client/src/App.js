@@ -5,6 +5,7 @@ import Main from './components/pages/Main';
 import './styles/tailwind.css';
 import CatDetail from './components/pages/CatDetail';
 import Header from './components/Header';
+import Login from './components/pages/Login';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/post/:id" element={<CatDetail />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );

@@ -11,7 +11,7 @@ const Header = () => {
           <Link to="/" className="text-2xl mx-20">
             🏠
           </Link>
-          <Link to="#" className="text-2xl ">
+          <Link to="/login" className="text-2xl ">
             👋
           </Link>
         </div>
