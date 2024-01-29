@@ -35,6 +35,7 @@ const CatCard = () => {
               <img
                 src={`${process.env.REACT_APP_CAT_API_DOMAIN}cat/${cat._id}`}
                 className="object-cover object-center w-96 h-32"
+                alt={`img no.${cat.size}`}
               />
               <div className="p-3 font-bold">No. {cat.size}</div>
               <ul className="flex flex-wrap">
