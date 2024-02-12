@@ -1,26 +1,26 @@
-import { API_URL } from '../../../(home)/page';
-
-async function getMovies(id: string) {
-  // return fetch(url).then(res=>res.json());
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-  const resposne = await fetch(`${API_URL}/${id}`);
-  const json = await resposne.json();
-  return json;
-}
-
-async function getVideos(id: string) {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-  const resposne = await fetch(`${API_URL}/${id}/videos`);
-  return await resposne.json();
-}
+import { Suspense } from 'react';
+import MovieInfo from '../../../../components/movie-info';
+import MovieVideo from '../../../../components/movie-videos';
 
 export default async function MovieDetail({
   params: { id },
 }: {
   params: { id: string };
 }) {
-  const [movie, videos] = await Promise.all([getMovies(id), getVideos(id)]);
-  return <h1>{movie.title}</h1>;
+  // 한번에 처리할 때 :
+  // const [movie, videos] = await Promise.all([getMovies(id), getVideos(id)]);
+  // 데이터 fetch하는 데까지 걸리는 시간 동안 같은 위치의 loading.tsx 파일이 대신 보여졌음
+  // BUT 아래 return 절에서 어느 데이터도 fetching 하지 않기 때문에 Suspense의 fallback이 대신 등장.
+  return (
+    <>
+      <Suspense fallback={<h3>Loading Movie Info</h3>}>
+        <MovieInfo id={id} />
+      </Suspense>
+      <Suspense fallback={<h3>Loading Movie Videos</h3>}>
+        <MovieVideo id={id} />
+      </Suspense>
+    </>
+  );
 }
 
 // === 동적 라우팅 ===
@@ -31,5 +31,10 @@ export default async function MovieDetail({
 // === parallel data fetching ===
 // await은 기본적으로 동기처리라서 비동기처리를 해줘야 함
 // 방법 1 : Promise.all();
-// const [num1, num2] = await Promise.all([num1(), num2()]);
-// 방법 2.
+// Ex. const [num1, num2] = await Promise.all([num1(), num2()]);
+// 방법 2. <Suspense>
+// 각 데이터를 컴포넌트로 분리 -> React에 있는 Suspense를 이용
+// 이때 fallback 속성으로 컴포넌트가 loading 중인 때에 보여줄 화면을 구현
+
+// === 에러 발생 시 ===
+// error.tsx 생성 + "use client"
