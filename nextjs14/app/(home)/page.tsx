@@ -1,7 +1,9 @@
 // === routes group ===
 // 소괄호 안에 작성하면 프레임워크가 url로 인식하지 않는다. 그래서 메인 페이지에 필요한 파일들 정리 가능!
 
-const url = 'http://nomad-movies.nomadcoders.workers.dev/movies';
+import Link from 'next/link';
+
+export const API_URL = 'http://nomad-movies.nomadcoders.workers.dev/movies';
 
 export const metadata = {
   titile: 'HOME',
@@ -9,15 +11,23 @@ export const metadata = {
 
 async function getMovies() {
   // return fetch(url).then(res=>res.json());
-  await new Promise((resolve) => setTimeout(resolve, 5000)); // 백에서 5초 딜레이 된다면?
-  const resposne = await fetch(url);
+  await new Promise((resolve) => setTimeout(resolve, 1000)); // 백에서 5초 딜레이 된다면?
+  const resposne = await fetch(API_URL);
   const json = await resposne.json();
   return json;
 }
 
 export default async function HomePage() {
   const movies = await getMovies();
-  return <>{JSON.stringify(movies)}</>;
+  return (
+    <>
+      {movies.map((movie) => (
+        <li key={movie.id}>
+          <Link href={`/movies/${movie.id}`}>{movie.title}</Link>
+        </li>
+      ))}
+    </>
+  );
 }
 
 // === 서버 컴포넌트 ===
