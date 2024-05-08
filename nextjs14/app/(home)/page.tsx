@@ -7,7 +7,7 @@ import styles from '../../styles/home.module.css';
 export const API_URL = 'http://nomad-movies.nomadcoders.workers.dev/movies';
 
 export const metadata = {
-  titile: 'HOME',
+  title: 'Home',
 };
 
 async function getMovies() {

@@ -1,12 +1,20 @@
 import { Suspense } from 'react';
-import MovieInfo from '../../../../components/movie-info';
+import MovieInfo, { getMovies } from '../../../../components/movie-info';
 import MovieVideo from '../../../../components/movie-videos';
 
-export default async function MovieDetail({
-  params: { id },
-}: {
+interface IParams {
   params: { id: string };
-}) {
+}
+
+// Dynamic Metadata
+export async function generateMetadata({ params: { id } }: IParams) {
+  const movie = await getMovies(id);
+  return {
+    title: movie.title,
+  };
+}
+
+export default async function MovieDetail({ params: { id } }: IParams) {
   // 한번에 처리할 때 :
   // const [movie, videos] = await Promise.all([getMovies(id), getVideos(id)]);
   // 데이터 fetch하는 데까지 걸리는 시간 동안 같은 위치의 loading.tsx 파일이 대신 보여졌음
