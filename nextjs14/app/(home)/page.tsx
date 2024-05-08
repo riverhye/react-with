@@ -1,7 +1,8 @@
 // === routes group ===
 // 소괄호 안에 작성하면 프레임워크가 url로 인식하지 않는다. 그래서 메인 페이지에 필요한 파일들 정리 가능!
 
-import Link from 'next/link';
+import Movie from '../../components/movie';
+import styles from '../../styles/home.module.css';
 
 export const API_URL = 'http://nomad-movies.nomadcoders.workers.dev/movies';
 
@@ -21,11 +22,15 @@ export default async function HomePage() {
   const movies = await getMovies();
   return (
     <>
-      {movies.map((movie) => (
-        <li key={movie.id}>
-          <Link href={`/movies/${movie.id}`}>{movie.title}</Link>
-        </li>
-      ))}
+      <div className={styles.container}>
+        {movies.map((movie) => (
+          <Movie
+            id={movie.id}
+            title={movie.title}
+            poster_path={movie.poster_path}
+          />
+        ))}
+      </div>
     </>
   );
 }
