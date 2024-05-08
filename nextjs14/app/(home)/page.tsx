@@ -4,18 +4,15 @@
 import Movie from '../../components/movie';
 import styles from '../../styles/home.module.css';
 
-export const API_URL = 'http://nomad-movies.nomadcoders.workers.dev/movies';
+export const API_URL = 'https://nomad-movies.nomadcoders.workers.dev/movies';
 
 export const metadata = {
   title: 'Home',
 };
 
 async function getMovies() {
-  // return fetch(url).then(res=>res.json());
-  await new Promise((resolve) => setTimeout(resolve, 1000)); // 백에서 5초 딜레이 된다면?
   const resposne = await fetch(API_URL);
-  const json = await resposne.json();
-  return json;
+  return resposne.json();
 }
 
 export default async function HomePage() {

@@ -19,6 +19,10 @@ export default async function MovieInfo({ id }: { id: string }) {
         <a className={styles.info} href={movie.homepage} target={'_blank'}>
           Homepage &rarr;
         </a>
+        <a className={styles.info} href={`/movies/${id}/credits`}>
+          {' '}
+          Credits &rarr;
+        </a>
       </div>
     </div>
   );
