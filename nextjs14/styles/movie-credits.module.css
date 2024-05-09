@@ -4,7 +4,6 @@
   gap: 50px;
   width: 80%;
   margin: 0 auto;
-  padding-bottom: 100px;
 }
 
 .poster {
@@ -26,4 +25,5 @@
   max-width: 90%;
   width: 100%;
   margin: 0 auto;
+  padding-bottom: 100px;
 }
