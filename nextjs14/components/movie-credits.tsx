@@ -1,6 +1,6 @@
 import { API_URL } from '../app/(home)/page';
 import styles from '../styles/movie-credits.module.css';
-import { getMovies } from './movie-info';
+import MovieInfo, { getMovies } from './movie-info';
 
 export async function getCredits(id: string) {
   const res = await fetch(`${API_URL}/${id}/credits`);
@@ -13,13 +13,7 @@ export default async function MovieCredit({ id }: { id: string }) {
 
   return (
     <>
-      <div className={styles.movieContainer}>
-        <img className={styles.poster} src={movie.poster_path} />
-        <div>
-          <h3 className={styles.title}>Credits of</h3>
-          <h2 className={styles.title}>{movie.title}</h2>
-        </div>
-      </div>
+      <MovieInfo id={id} children />
       <div className={styles.container}>
         {credits.map((credit) => (
           <div>
