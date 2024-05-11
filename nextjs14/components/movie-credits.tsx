@@ -16,10 +16,12 @@ export default async function MovieCredit({ id }: { id: string }) {
       <MovieInfo id={id} children />
       <div className={styles.container}>
         {credits.map((credit) => (
-          <div>
+          <div className={styles.item}>
             <img src={credit.profile_path} />
-            <h3>{credit.original_name}</h3>
-            <p> as {credit.character}</p>
+            <div>
+              <h3>{credit.original_name}</h3>
+              <p> {credit.character && `as ${credit.character}`}</p>
+            </div>
           </div>
         ))}
       </div>
