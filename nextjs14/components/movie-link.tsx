@@ -10,8 +10,10 @@ export default async function MovieLink({ id }: { id: string }) {
         Homepage &rarr;
       </a>
       <a className={styles.info} href={`/movies/${id}/credits`}>
-        {' '}
         Credits &rarr;
+      </a>
+      <a className={styles.info} href={`/movies/${id}/providers`}>
+        Providers &rarr;
       </a>
     </>
   );
