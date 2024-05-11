@@ -12,6 +12,7 @@
   border-radius: 10px;
   opacity: 0.8;
   transition: opacity 0.1s ease-in-out;
+  aspect-ratio: 16/9;
 }
 
 .container iframe:hover {
