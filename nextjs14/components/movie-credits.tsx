@@ -1,6 +1,6 @@
 import { API_URL } from '../app/(home)/page';
 import styles from '../styles/movie-credits.module.css';
-import MovieInfo, { getMovies } from './movie-info';
+import MovieInfo from './movie-info';
 
 export async function getCredits(id: string) {
   const res = await fetch(`${API_URL}/${id}/credits`);
@@ -15,7 +15,6 @@ interface ICredit {
 
 export default async function MovieCredit({ id }: { id: string }) {
   const credits = await getCredits(id);
-  const movie = await getMovies(id);
 
   return (
     <>

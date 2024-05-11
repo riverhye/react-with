@@ -2,9 +2,8 @@ import { API_URL } from '../app/(home)/page';
 import styles from '../styles/movie-video.module.css';
 
 async function getVideos(id: string) {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
   const resposne = await fetch(`${API_URL}/${id}/videos`);
-  return await resposne.json();
+  return resposne.json();
 }
 
 interface IVideo {
