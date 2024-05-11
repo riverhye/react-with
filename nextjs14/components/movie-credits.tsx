@@ -7,6 +7,12 @@ export async function getCredits(id: string) {
   return res.json();
 }
 
+interface ICredit {
+  profile_path: string;
+  original_name: string;
+  character: string;
+}
+
 export default async function MovieCredit({ id }: { id: string }) {
   const credits = await getCredits(id);
   const movie = await getMovies(id);
@@ -15,7 +21,7 @@ export default async function MovieCredit({ id }: { id: string }) {
     <>
       <MovieInfo id={id} children />
       <div className={styles.container}>
-        {credits.map((credit) => (
+        {credits.map((credit: ICredit) => (
           <div className={styles.item}>
             <img src={credit.profile_path} />
             <div>

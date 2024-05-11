@@ -7,11 +7,17 @@ async function getVideos(id: string) {
   return await resposne.json();
 }
 
+interface IVideo {
+  id: number;
+  key: string;
+  name: string;
+}
+
 export default async function MovieVideo({ id }: { id: string }) {
   const videos = await getVideos(id);
   return (
     <div className={styles.container}>
-      {videos.map((video) => (
+      {videos.map((video: IVideo) => (
         <iframe
           key={video.id}
           src={`https://youtube.com/embed/${video.key}`}
