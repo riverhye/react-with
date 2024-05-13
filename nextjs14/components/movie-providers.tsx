@@ -12,17 +12,13 @@ async function getProviders(id: string) {
 
 export default async function MovieProviders({ id }: { id: string }) {
   const providers = await getProviders(id);
-  console.log(providers);
+  console.log(Object.entries(providers));
+  // providers = Object.entries(providers);
 
   return (
     <div>
       {/* null이 아닐 때 + 객체를 배열로 변환 후 데이터 바인딩 */}
-      {/* {providers !== null &&
-        providers.map((provider) => (
-          <div>
-            <img src={provider.logo_path} />
-          </div>
-        ))} */}
+      {/* {providers !== null && providers.map((provider) => <div>{provider}</div>)} */}
     </div>
   );
 }
