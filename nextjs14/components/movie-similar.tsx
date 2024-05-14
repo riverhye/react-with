@@ -12,9 +12,9 @@ export default async function MoiveSimilar({ id }: { id: string }) {
   return (
     <div className={styles.container}>
       {similars.map((movie) => (
-        <Link href={`/movies/${movie.id}`}>
+        <Link href={`/movies/${movie.id}`} id={movie.id}>
           <div className={styles.item}>
-            <img src={movie.poster_path} alt={movie.title} />
+            <img src={movie.poster_path || '/img-alt.png'} alt={movie.title} />
             <h3>{movie.title}</h3>
             <span>⭐️ {movie.vote_average.toFixed(1)}</span>
           </div>

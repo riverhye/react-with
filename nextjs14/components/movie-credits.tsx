@@ -22,7 +22,7 @@ export default async function MovieCredit({ id }: { id: string }) {
       <div className={styles.container}>
         {credits.map((credit: ICredit) => (
           <div className={styles.item}>
-            <img src={credit.profile_path} />
+            <img src={credit.profile_path || '/img-alt.png'} />
             <div>
               <h3>{credit.original_name}</h3>
               <p> {credit.character && `as ${credit.character}`}</p>
